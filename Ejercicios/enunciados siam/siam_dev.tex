@@ -1,0 +1,539 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   
+  basicstyle=\footnotesize,        
+  breaklines=true,                 
+  captionpos=b,                    
+  commentstyle=\color{mygreen},    
+  escapeinside={\%*}{*)},          
+  keywordstyle=\color{blue},       
+  stringstyle=\color{mymauve},     
+}
+
+\begin{document}
+\section{Materia}
+\textbf{8.1} Verdadero o falso: Evaluar una integral definida siempre es un problema bien condicionado.
+
+\textbf{8.2} Verdadero o falso: Debido a que se basa en la interpolación polinómica de grado uno superior, la regla del trapecio es generalmente más precisa que la regla del punto medio.
+
+\textbf{8.3} Verdadero o falso: El grado de una regla de cuadratura es el grado del polinomio interpolante en el que se basa la regla.
+
+\textbf{8.4} Verdadero o falso: Una regla de cuadratura de \(n\) puntos de Newton-Cotes siempre es de grado \(n - 1\).
+
+\textbf{8.5} Verdadero o falso: Las reglas de cuadratura gaussiana de diferentes órdenes nunca tienen puntos en común.
+
+\textbf{8.6} ¿Qué condiciones son necesarias y suficientes para que exista una integral de Riemann?
+
+\textbf{8.7}
+\begin{itemize}
+    \item[(a)] ¿Bajo qué condiciones es probable que una integral definida sea sensible a pequeñas perturbaciones en el integrando?
+    \item[(b)] ¿Bajo qué condiciones es probable que una integral definida sea sensible a pequeñas perturbaciones en los límites de integración?
+\end{itemize}
+
+\textbf{8.8} ¿Cuál es la diferencia entre una regla de cuadratura abierta y una regla de cuadratura cerrada?
+
+\textbf{8.9} Nombra dos métodos diferentes para calcular los pesos correspondientes a un conjunto dado de nodos de una regla de cuadratura.
+
+\textbf{8.10} ¿Cómo puedes estimar el error en una regla de cuadratura sin calcular las derivadas de la función integranda que serían requeridas por una expansión en serie de Taylor?
+
+\textbf{8.11}
+\begin{itemize}
+    \item[(a)] ¿Cómo difiere la colocación de nodos entre la cuadratura de Newton-Cotes y la cuadratura de Clenshaw-Curtis?
+    \item[(b)] ¿Cuál esperarías que fuera más precisa para el mismo número de nodos? ¿Por qué?
+\end{itemize}
+
+\textbf{8.12}
+\begin{itemize}
+    \item[(a)] ¿Cómo difiere la colocación de nodos entre la cuadratura de Newton-Cotes y la cuadratura de Gauss?
+    \item[(b)] ¿Cuál esperarías que fuera más precisa para el mismo número de nodos? ¿Por qué?
+\end{itemize}
+
+\textbf{8.13}
+\begin{itemize}
+    \item[(a)] Si una regla de cuadratura para un intervalo \([a, b]\) se basa en la interpolación polinómica en puntos igualmente espaciados en el intervalo, ¿cuál es el grado más alto tal que la regla integre exactamente todos los polinomios de ese grado?
+    \item[(b)] ¿Cómo cambiaría tu respuesta si los puntos se optimizaran para integrar exactamente los polinomios de mayor grado posible?
+\end{itemize}
+
+\textbf{8.14}
+\begin{itemize}
+    \item[(a)] ¿Esperarías que una regla de cuadratura de \(n\) puntos de Newton-Cotes funcione bien para integrar la función de Runge, \(\int_{-1}^{1}(1 + 25x^2)^{-1} \, dx\), si \(n\) es muy grande? ¿Por qué?
+    \item[(b)] ¿Esperarías que una regla de cuadratura de \(n\) puntos de Clenshaw-Curtis funcione bien para integrar la función de Runge, \(\int_{-1}^{1}(1 + 25x^2)^{-1} \, dx\), si \(n\) es muy grande? ¿Por qué?
+\end{itemize}
+
+\textbf{8.15} 
+\begin{itemize}
+    \item [(a)] ¿Cuál es el grado de la regla de Simpson para la cuadratura numérica?
+    \item[(b)] ¿Cuál es el grado de una regla de cuadratura de Gauss de \(n\) puntos?
+
+\textbf{8.16} Las reglas de cuadratura de Newton-Cotes y Gauss se basan en la interpolación polinómica.
+
+\begin{itemize}
+    \item[(a)] ¿Qué propiedad específica caracteriza una regla de cuadratura de Newton-Cotes para un número dado de nodos?
+    \item[(b)] ¿Qué propiedad específica caracteriza una regla de cuadratura de Gauss para un número dado de nodos?
+\end{itemize}
+
+\textbf{8.17}
+\begin{itemize}
+    \item[(a)] Explica cómo la regla del punto medio, que se basa en la interpolación por un polinomio de grado cero, puede sin embargo integrar exactamente polinomios de grado uno.
+    \item[(b)] ¿Es la regla del punto medio una regla de cuadratura de Gauss? Explica tu respuesta.
+\end{itemize}
+
+\textbf{8.18} Supón que la regla de cuadratura
+\[
+\int_a^b f(x) \, dx \approx \sum_{i=1}^n w_i f(x_i)
+\]
+es exacta para todas las funciones constantes. ¿Qué implica esto acerca de los pesos \(w_i\) o los nodos \(x_i\)?
+
+\textbf{8.19} ¿Por qué es importante que todos los pesos de una regla de cuadratura sean no negativos?
+
+\textbf{8.20} Si la función integranda tiene una singularidad integrable en un extremo del intervalo de integración, ¿qué tipo de regla de cuadratura sería mejor usar, una regla de cuadratura de Newton-Cotes cerrada o una regla de cuadratura de Gauss? ¿Por qué?
+
+\textbf{8.21} ¿Cuál es el grado de cada uno de los siguientes tipos de reglas de cuadratura numérica?
+\begin{itemize}
+    \item[(a)] Una regla de cuadratura de Newton-Cotes de \(n\) puntos, donde \(n\) es impar
+    \item[(b)] Una regla de cuadratura de Newton-Cotes de \(n\) puntos, donde \(n\) es par
+    \item[(c)] Una regla de cuadratura de Gauss de \(n\) puntos
+    \item[(d)] ¿Qué explica la diferencia entre las respuestas a las partes (a) y (b)?
+    \item[(e)] ¿Qué explica la diferencia entre las respuestas a las partes (b) y (c)?
+\end{itemize}
+
+\textbf{8.22} Para cada una de las siguientes propiedades, indica qué tipo de cuadratura, Newton-Cotes o Gauss, describe más exactamente la propiedad:
+\begin{itemize}
+    \item[(a)] Más fácil de calcular los nodos y los pesos
+    \item[(b)] Más fácil de aplicar para un intervalo general \([a, b]\)
+    \item[(c)] Más precisa para el mismo número de nodos
+    \item[(d)] Tiene el grado máximo para el mismo número de nodos
+    \item[(e)] Los nodos permanecen fáciles de usar en caso de cambios en la regla de cuadratura
+\end{itemize}
+
+\textbf{8.23} ¿Cuál es la relación entre la cuadratura de Gauss y los polinomios ortogonales?
+\end{itemize}
+
+
+\textbf{8.24}
+\begin{itemize}
+    \item[(a)] ¿Qué significa que una secuencia de reglas de cuadratura sea progresiva?
+    \item[(b)] ¿Por qué es importante esta propiedad?
+\end{itemize}
+
+\textbf{8.25}
+\begin{itemize}
+    \item[(a)] ¿Cuál es la ventaja de usar un par de reglas de cuadratura Gauss-Kronrod, como \(G_7\) y \(K_{15}\), en comparación con usar dos reglas Gaussianas, como \(G_7\) y \(G_{15}\), para obtener una integral aproximada con estimación del error?
+    \item[(b)] ¿Cuántas evaluaciones de la función integranda se requieren para evaluar ambas reglas \(G_7\) y \(K_{15}\) en un intervalo dado?
+\end{itemize}
+
+\textbf{8.26} Ordena los siguientes tipos de reglas de cuadratura en orden de su grado para el mismo número de nodos (1 para el mayor grado, etc.):
+\begin{itemize}
+    \item[(a)] Newton-Cotes
+    \item[(b)] Gaussiana
+    \item[(c)] Kronrod
+\end{itemize}
+
+\textbf{8.27}
+\begin{itemize}
+    \item[(a)] ¿Qué es una regla de cuadratura compuesta?
+    \item[(b)] ¿Por qué una regla de cuadratura compuesta es preferible a una regla de cuadratura simple para lograr alta precisión al calcular numéricamente una integral definida en un intervalo dado?
+    \item[(c)] Al usar la regla de cuadratura del trapecio compuesta para aproximar una integral definida en un intervalo \([a, b]\), ¿en qué factor se reduce el error global si el tamaño de la malla (es decir, la longitud del subintervalo) \(h\) se reduce a la mitad?
+\end{itemize}
+
+\textbf{8.28}
+\begin{itemize}
+    \item[(a)] Describe en términos generales cómo funciona la cuadratura adaptativa.
+    \item[(b)] ¿Cómo se puede obtener la estimación del error necesaria?
+    \item[(c)] ¿Bajo qué circunstancias podría un procedimiento de este tipo producir un resultado con un error significativo?
+    \item[(d)] ¿Bajo qué circunstancias podría ser muy ineficiente un procedimiento de este tipo?
+\end{itemize}
+
+\textbf{8.29} ¿Cuál es la forma más eficiente de usar una rutina de cuadratura adaptativa para calcular una integral definida cuya función integranda tiene una discontinuidad conocida dentro del intervalo de integración?
+
+\textbf{8.30} ¿Cuál es una buena manera de integrar datos tabulares (es decir, una función integranda cuyo valor solo se conoce en un conjunto discreto de puntos)?
+
+\textbf{8.31}
+\begin{itemize}
+    \item[(a)] ¿Cómo se podría usar una rutina de cuadratura estándar, diseñada para integrar sobre un intervalo finito, para integrar una función en un intervalo no acotado?
+    \item[(b)] ¿Qué precauciones deberían tomarse para garantizar un buen resultado?
+\end{itemize}
+
+\textbf{8.32} ¿Cómo se podría usar una rutina de cuadratura unidimensional estándar para calcular el valor de una integral doble sobre una región rectangular?
+
+\textbf{8.33} ¿Por qué el método de Monte Carlo no es un método práctico para calcular integrales unidimensionales?
+
+\textbf{8.34} En comparación con otros métodos para la cuadratura numérica, ¿por qué el método de Monte Carlo es más efectivo en dimensiones más altas que en dimensiones bajas?
+
+\textbf{8.35} Explica por qué las ecuaciones integrales de primer tipo con núcleos suaves siempre están mal condicionadas.
+
+\textbf{8.36} Explica cómo se puede usar una regla de cuadratura para resolver numéricamente una ecuación integral. ¿Qué tipo de problemas computacionales surgen?
+
+\textbf{8.37} Al resolver una ecuación integral de primer tipo mediante cuadratura numérica, ¿la solución siempre mejora si se aumenta el orden de la regla de cuadratura o se reduce el tamaño de la malla? ¿Por qué?
+
+\textbf{8.38} Enumera tres enfoques para obtener una solución útil a un sistema lineal mal condicionado que aproxima una ecuación integral de primer tipo.
+
+\textbf{8.39} Considera el problema de aproximar la derivada de una función que se mide o se muestrea solo en un número finito de puntos.
+\begin{itemize}
+    \item[(a)] Una forma de obtener una derivada aproximada es interpolar los datos discretos y luego diferenciar el interpolante. ¿Es este un buen método para aproximar la derivada? ¿Por qué?
+    \item[(b)] De manera similar, uno puede aproximar la integral de una función dada por datos discretos integrando el interpolante. ¿Es este un buen método para calcular la integral? ¿Por qué?
+\end{itemize}
+
+\textbf{8.40} Comparando integración y diferenciación, ¿cuál de estos problemas está inherentemente mejor condicionado? ¿Por qué?
+
+\textbf{8.41}
+\begin{itemize}
+    \item[(a)] Sugiere un buen método para aproximar numéricamente la derivada de una función cuyo valor se da solo en un conjunto discreto de puntos.
+    \item[(b)] Para este problema, ¿cuál sería el efecto de los datos ruidosos y cómo lo abordarías en tu método numérico?
+\end{itemize}
+
+\textbf{8.42} Enumera dos métodos para derivar aproximaciones por diferencias finitas a las derivadas de una función dada.
+
+\textbf{8.43} Describe brevemente la idea básica de la diferenciación automática. ¿En qué resultado básico del cálculo se basa en gran medida?
+\begin{itemize}
+    \item[(b)] ¿Da una respuesta más precisa que los valores en los que se basa?
+    \item[(c)] ¿La extrapolación a un tamaño de paso cero significa que el resultado es exacto (es decir, que el error es cero)?
+\end{itemize}
+
+\textbf{8.44}
+\begin{itemize}
+    \item[(a)] Explica la idea básica de la extrapolación de Richardson.
+\end{itemize}
+
+\textbf{8.45} ¿Qué se entiende por integración de Romberg?
+
+
+\section{Ejercicios}
+\textbf{8.1}
+\begin{itemize}
+    \item[(a)] Calcula el valor aproximado de la integral \(\int_0^1 x^3 \, dx\), primero usando la regla del punto medio y luego usando la regla del trapecio.
+    \item[(b)] Usa la diferencia entre estos dos resultados para estimar el error en cada uno de ellos.
+    \item[(c)] Combina los dos resultados para obtener la aproximación de Simpson a la integral.
+    \item[(d)] ¿Esperarías que esta última sea exacta para este problema? ¿Por qué?
+\end{itemize}
+
+\textbf{8.2}
+\begin{itemize}
+    \item[(a)] Usando la regla de cuadratura del punto medio compuesta, calcula el valor aproximado de la integral \(\int_0^1 x^3 \, dx\), usando un tamaño de malla (longitud del subintervalo) de \(h = 1\) y también usando un tamaño de malla de \(h = 0.5\).
+    \item[(b)] Basado en los dos valores aproximados calculados en la parte (a), usa la extrapolación de Richardson para calcular una aproximación más precisa de la integral.
+    \item[(c)] ¿Esperarías que el resultado extrapolado calculado en la parte (b) sea exacto en este caso? ¿Por qué?
+\end{itemize}
+
+\textbf{8.3} Si \(Q(f) = \sum_{i=1}^n w_i f(x_i)\) es una regla de cuadratura interpoladora (es decir, basada en la interpolación polinómica) en el intervalo \([0, 1]\), ¿es cierto que \(\sum_{i=1}^n w_i = 1\)? Demuestra tu respuesta.
+
+\textbf{8.4} Completa los detalles de la derivación de las estimaciones de error para las reglas de cuadratura del punto medio y del trapecio dadas en la Sección 8.3.1. En particular, muestra que los términos de orden impar se anulan en ambos casos.
+
+\textbf{8.5}
+\begin{itemize}
+    \item[(a)] Si la función integranda \(f\) es dos veces diferenciable continuamente y \(f''(x) \geq 0\) en \([a, b]\), muestra que las reglas de cuadratura compuesta del punto medio y del trapecio satisfacen la propiedad de delimitación
+    \[
+    M_k(f) \leq \int_a^b f(x) \, dx \leq T_k(f).
+    \]
+    \item[(b)] Si la función integranda \(f\) es convexa en \([a, b]\) (ver Sección 6.2.1), demuestre que las reglas de punto medio compuesto y cuadratura del trapezoide satisfacen la propiedad de corchetes de la parte a.
+\end{itemize}
+
+\textbf{8.6} Supón que la interpolación de Lagrange en un conjunto dado de nodos \(x_1, \dots, x_n\) se utiliza para derivar una regla de cuadratura. Demuestra que los pesos correspondientes están dados por las integrales de las funciones base de Lagrange, \(w_i = \int_a^b \ell_i(x) \, dx\), \(i = 1, \dots, n\).
+
+\textbf{8.7} Deriva una regla de cuadratura de Newton-Cotes abierta de dos puntos para el intervalo \([a, b]\). ¿Cuáles son los nodos y pesos resultantes? ¿Cuál es el grado de la regla resultante?
+
+\textbf{8.8} Para responder las siguientes preguntas, puedes consultar un libro de tablas como [2] para encontrar los pesos relevantes, o bien calcularlos tú mismo.
+\begin{itemize}
+    \item[(a)] ¿Cuál es el valor más grande de \(n\) para el cual todos los pesos de una regla de cuadratura de Newton-Cotes cerrada de \(n\) puntos son positivos?
+    \item[(b)] ¿Cuál es el valor más pequeño de \(n\) para el cual al menos uno de los pesos de una regla de cuadratura de Newton-Cotes cerrada de \(n\) puntos es negativo?
+    \item[(c)] ¿Cuál es el valor más grande de \(n\) para el cual todos los pesos de una regla de cuadratura de Newton-Cotes abierta de \(n\) puntos son positivos?
+    \item[(d)] ¿Cuál es el valor más pequeño de \(n\) para el cual al menos uno de los pesos de una regla de cuadratura de Newton-Cotes abierta de \(n\) puntos es negativo?
+\end{itemize}
+
+\textbf{8.9} Sea \(p(x)\) un polinomio real de grado \(n\) tal que
+\[
+\int_a^b p(x) x^k \, dx = 0, \quad k = 0, \dots, n-1.
+\]
+\begin{itemize}
+    \item[(a)] Demuestra que las \(n\) raíces de \(p\) son reales, simples, y se encuentran en el intervalo abierto \((a, b)\). (\textit{Sugerencia}: Considera el polinomio \(q_k(x) = (x - x_1)(x - x_2) \dots (x - x_k)\), donde \(x_i\), \(i = 1, \dots, k\), son las raíces de \(p\) en \([a, b]\).)
+    \item[(b)] Demuestra que la regla de cuadratura interpolatoria de \(n\) puntos en \([a, b]\) cuyos nodos son las raíces de \(p\) tiene grado \(2n - 1\). (\textit{Sugerencia}: considere los polinomios cociente y resto cuando un polinomio dado se divide por p.))
+\end{itemize}
+
+\textbf{8.10} Las reglas de cuadratura de Newton-Cotes se derivan fijando los nodos y luego determinando los pesos correspondientes mediante el método de coeficientes indeterminados para que el grado se maximice para los nodos dados. También se podría tomar el enfoque opuesto, con los pesos restringidos y los nodos por determinar. En una regla de cuadratura de Chebyshev, por ejemplo, todos los pesos se toman con el mismo valor, \(w\), eliminando así \(n\) multiplicaciones al evaluar la regla de cuadratura resultante, ya que el único peso se puede factorizar fuera de la suma.
+\begin{itemize}
+    \item[(a)] Usa el método de coeficientes indeterminados para determinar los nodos y el peso para una regla de cuadratura de Chebyshev de tres puntos en el intervalo \([-1, 1]\).
+    \item[(b)] ¿Cuál es el grado de la regla resultante?
+\end{itemize}
+
+\textbf{8.11}
+\begin{itemize}
+    \item[(a)] Supón que estás usando la regla del trapecio para aproximar una integral sobre un intervalo \([a, b]\). Si deseas obtener una aproximación más precisa de la integral, ¿cuál ganará más precisión: (1) dividir el intervalo a la mitad y usar la regla del trapecio en cada subintervalo, o (2) usar la regla de Simpson en el intervalo original? Nota que ambos enfoques usarán los mismos valores de la función en los extremos y en el punto medio del intervalo original. Apoya tu respuesta con un análisis de error. Prueba tus conclusiones experimentalmente con algunas integrales de muestra.
+    \item[(b)] Supón que estás usando la regla de Simpson para aproximar una integral sobre un intervalo \([a, b]\). Si deseas obtener una aproximación más precisa de la integral, ¿cuál ganará más precisión: (1) dividir el intervalo a la mitad y usar la regla de Simpson en cada subintervalo, o (2) usar una regla de Newton-Cotes cerrada con los mismos cinco puntos como nodos? Apoya tu respuesta con un análisis de error. Prueba tus conclusiones experimentalmente con algunas integrales de muestra.
+    \item[(c)] En general, para una regla de cuadratura cerrada de \(n\) puntos \(Q_n\), ¿se gana más precisión al reducir a la mitad el tamaño de la malla y usar \(Q_n\) en cada subintervalo, o al usar la regla \(Q_{2n-1}\) en el intervalo original? Usa el límite de error general de la Sección 8.3 para apoyar tu conclusión.
+\end{itemize}
+
+\textbf{8.12} La fórmula de diferencia hacia adelante
+\[
+f'(x) \approx \frac{f(x + h) - f(x)}{h}
+\]
+y la fórmula de diferencia hacia atrás
+\[
+f'(x) \approx \frac{f(x) - f(x-h)}{h}
+\]
+son ambas aproximaciones de primer orden a la primera derivada de una función \(f : \mathbb{R} \to \mathbb{R}\). ¿Qué orden de precisión resulta si promediamos estas dos aproximaciones? Apoya tu respuesta con un análisis de error.
+
+\textbf{8.13} Dada una función \(f: \mathbb{R} \to \mathbb{R}\) suficientemente suave, usa series de Taylor para derivar una aproximación por diferencias unilaterales de segundo orden precisa para \(f'(x)\) en términos de los valores de \(f(x)\), \(f(x+h)\) y \(f(x+2h)\).
+
+\textbf{8.14} Supón que la aproximación de primer orden precisa por diferencia hacia adelante a la derivada de una función en un punto dado produce el valor \(-0.8333\) para \(h = 0.2\) y el valor \(-0.9091\) para \(h = 0.1\). Usa la extrapolación de Richardson para obtener una aproximación más precisa para la derivada.
+
+\textbf{8.15} Arquímedes aproximó el valor de \(\pi\) calculando el perímetro de un polígono regular inscrito o circunscrito en un círculo de diámetro 1. El perímetro de un polígono inscrito con \(n\) lados está dado por
+\[
+p_n = n \sin(\pi/n),
+\]
+y el de un polígono circunscrito por
+\[
+q_n = n \tan(\pi/n),
+\]
+y estos valores proporcionan límites inferiores y superiores, respectivamente, sobre el valor de \(\pi\).
+\begin{itemize}
+    \item[(a)] Usando las expansiones en series de potencias para las funciones seno y tangente, muestra que \(p_n\) y \(q_n\) pueden expresarse en la forma
+    \[
+    p_n = a_0 + a_1 h^2 + a_2 h^4 + \cdots
+    \]
+    y
+    \[
+    q_n = b_0 + b_1 h^2 + b_2 h^4 + \cdots,
+    \]
+    donde \(h = 1/n\). ¿Cuáles son los valores verdaderos de \(a_0\) y \(b_0\)?
+    \item[(b)] Dados los valores \(p_6 = 3.0000\) y \(p_{12} = 3.1058\), usa la extrapolación de Richardson para producir una mejor estimación para \(\pi\). De manera similar, dados los valores \(q_6 = 3.4641\) y \(q_{12} = 3.2154\), usa la extrapolación de Richardson para producir una mejor estimación para \(\pi\).
+\end{itemize}
+
+\section{Computer Problems}
+\textbf{8.1} Dado que
+\[
+\int_0^1 \frac{4}{1 + x^2} \, dx = \pi,
+\]
+se puede calcular un valor aproximado de \(\pi\) usando la integración numérica de la función dada.
+
+\begin{itemize}
+    \item[(a)] Usa las reglas de cuadratura compuesta del punto medio, del trapecio y de Simpson para calcular el valor aproximado de \(\pi\) de esta manera para varios tamaños de paso \(h\). Trata de caracterizar el error como una función de \(h\) para cada regla, y también compara la precisión de las reglas entre sí (basado en el valor conocido de \(\pi\)). ¿Hay algún punto más allá del cual disminuir \(h\) no produce ninguna mejora adicional? ¿Por qué?
+    \item[(b)] Implementa la integración de Romberg y repite la parte (a) usando \(h\).
+    \item[(c)] Calcula \(\pi\) nuevamente usando el mismo método, esta vez usando una rutina de biblioteca para la cuadratura adaptativa y varias tolerancias de error. ¿Qué tan confiable es la estimación del error que produce? Compara el trabajo requerido (evaluaciones del integrando y tiempo transcurrido) con el de las partes (a) y (b). Haz una gráfica análoga a la Figura 8.4 para mostrar gráficamente dónde la rutina adaptativa muestrea el integrando.
+    \item[(d)] Calcula \(\pi\) nuevamente usando el mismo método, esta vez usando la integración de Monte Carlo con varios números \(n\) de puntos de muestreo. Trata de caracterizar el error como una función de \(n\), y también compara el trabajo requerido con el de los métodos anteriores. Para un generador de números aleatorios adecuado, consulta la Sección 13.5.
+\end{itemize}
+
+\textbf{8.2} La integral en el problema anterior es bastante fácil. Repite el problema, esta vez calculando la integral más difícil
+\[
+\int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}.
+\]
+
+\textbf{8.3} Evalúa cada una de las siguientes integrales.
+\begin{itemize}
+    \item[(a)] \(\int_{-1}^1 \cos(x) \, dx\)
+    \item[(b)] \(\int_{-1}^1 \frac{1}{1 + 100x^2} \, dx\)
+    \item[(c)] \(\int_{-1}^1 \sqrt{|x|} \, dx\)
+\end{itemize}
+
+Prueba varias reglas de cuadratura compuesta para varios tamaños de malla fijos y compara su eficiencia y precisión. Además, prueba una o más rutinas de cuadratura adaptativa usando varias tolerancias de error, y nuevamente compara la eficiencia para una precisión dada. Haz una gráfica análoga a la Figura 8.4 para mostrar gráficamente dónde la rutina adaptativa muestrea el integrando.
+
+\textbf{8.4} Usa la integración numérica para verificar o refutar cada una de las siguientes conjeturas.
+\begin{itemize}
+    \item[(a)] \(\int_0^1 \sqrt{x^3} \, dx = 0.4\)
+    \item[(b)] \(\int_0^1 \frac{1}{1 + 10x^2} \, dx = 0.4\)
+    \item[(c)] \(\int_0^1 \frac{e^{-9x^2} + e^{-1024(x - 1/4)^2}}{\sqrt{\pi}} \, dx = 0.2\)
+    \item[(d)] \(\int_0^{10} \frac{50}{\pi(2500x^2 + 1)} \, dx = 0.5\)
+    \item[(e)] \(\int_{-9}^{100} \frac{1}{\sqrt{|x|}} \, dx = 26\)
+    \item[(f)] \(\int_0^{10} 25e^{-25x} \, dx = 1\)
+    \item[(g)] \(\int_0^1 \log(x) \, dx = -1\)
+\end{itemize}
+
+\textbf{8.5} Cada una de las siguientes integrales está definida por partes sobre el intervalo indicado. Usa una rutina de cuadratura adaptativa para evaluar cada integral en el intervalo dado. Para el mismo requisito general de precisión, compara el costo de evaluar la integral usando una única llamada a subrutina sobre todo el intervalo con el costo cuando la rutina se llama por separado en cada subintervalo apropiado. Experimenta tanto con tolerancias de error amplias como estrictas. Haz una gráfica análoga a la Figura 8.4 para mostrar gráficamente dónde la rutina adaptativa muestrea el integrando mediante la rutina adaptativa.
+
+\begin{itemize}
+    \item[(a)] \(f(x) = \begin{cases} 
+    0 & 0 \leq x < 0.3 \\ 
+    1 & 0.3 \leq x \leq 1 
+    \end{cases}\)
+    
+    \item[(b)] \(f(x) = \begin{cases} 
+    \frac{1}{(x + 2)} & 0 \leq x < e - 2 \\ 
+    0 & e - 2 \leq x \leq 1 
+    \end{cases}\)
+    
+    \item[(c)] \(f(x) = \begin{cases} 
+    e^x & -1 \leq x < 0 \\ 
+    e^{1-x} & 0 \leq x \leq 2 
+    \end{cases}\)
+    
+    \item[(d)] \(f(x) = \begin{cases} 
+    e^{10x} & -1 \leq x < 0.5 \\ 
+    e^{10(1-x)} & 0.5 \leq x \leq 1.5 
+    \end{cases}\)
+    
+    \item[(e)] \(f(x) = \begin{cases} 
+    \sin(\pi x) & 0 \leq x < 0.5 \\ 
+    \sin^2(\pi x) & 0.5 \leq x \leq 1.0 
+    \end{cases}\)
+\end{itemize}
+
+\textbf{8.6} Evalúa las siguientes cantidades usando cada uno de los métodos dados:
+\begin{itemize}
+    \item[(a)] Usa una rutina de cuadratura adaptativa para evaluar cada una de las integrales
+    \[
+    I_k = e^{-1} \int_0^1 x^k e^x \, dx
+    \]
+    para \(k = 0, 1, \dots, 20\).
+    
+    \item[(b)] Verifica que las integrales recién definidas satisfacen la recurrencia
+    \[
+    I_k = 1 - k I_{k-1},
+    \]
+    y úsala para generar las mismas cantidades, comenzando con \(I_0 = 1 - e^{-1}\).
+    
+    \item[(c)] Genera las mismas cantidades usando la recurrencia hacia atrás
+    \[
+    I_{k-1} = (1 - I_k)/k,
+    \]
+    comenzando con \(I_n = 0\) para algún valor elegido de \(n > 20\). Experimenta con diferentes valores de \(n\) para ver el efecto sobre la precisión de los valores generados.
+    
+    \item[(d)] Compara los tres métodos con respecto a la precisión, estabilidad y tiempo de ejecución. ¿Puedes explicar estos resultados?
+\end{itemize}
+
+\textbf{8.7} El área superficial de un elipsoide obtenido al rotar una elipse sobre su eje mayor está dada por la integral
+\[
+I(f) = 4\pi\sqrt{\alpha} \int_0^{1/\sqrt{\beta}} \sqrt{1 - Kx^2} \, dx,
+\]
+donde \(\beta = 100\), \(\alpha = (3 - 2\sqrt{2})/\beta\), y \(K = \beta\sqrt{1 - \alpha\beta}\). Usa una rutina de cuadratura adaptativa para calcular esta integral. Haz una gráfica análoga a la Figura 8.4 para mostrar gráficamente dónde la rutina adaptativa muestrea el integrando. Compara tus resultados con la integral exacta, que está dada por
+\[
+\pi\sqrt{\alpha/K} \left( \pi + \sin(2\theta) - 2\theta \right),
+\]
+donde \(\theta = \arccos(\sqrt{K/\beta})\).
+
+\textbf{8.8} La intensidad de la luz difractada cerca de un borde recto está determinada por los valores de las integrales de Fresnel
+\[
+C(x) = \int_0^x \cos\left(\frac{\pi t^2}{2}\right) dt
+\]
+y
+\[
+S(x) = \int_0^x \sin\left(\frac{\pi t^2}{2}\right) dt.
+\]
+Usa una rutina de cuadratura adaptativa para evaluar estas integrales para suficientes valores de \(x\) para dibujar una gráfica suave de \(C(x)\) y \(S(x)\) en el rango \(0 \leq x \leq 5\). Podrías querer verificar tus resultados obteniendo una rutina para calcular las integrales de Fresnel a partir de una biblioteca de funciones especiales (ver Sección 7.5.1).
+
+\textbf{8.9} El período de un péndulo simple está determinado por la integral elíptica completa de primer tipo
+\[
+K(x) = \int_0^{\pi/2} \frac{d\theta}{\sqrt{1 - x^2 \sin^2\theta}}.
+\]
+Usa una rutina de cuadratura adaptativa para evaluar esta integral para suficientes valores de \(x\) para dibujar una gráfica suave de \(K(x)\) en el rango \(0 \leq x \leq 1\). Podrías querer verificar tus resultados obteniendo una rutina para calcular integrales elípticas de una biblioteca de funciones especiales (ver Sección 7.5.1).
+
+\textbf{8.10} La función gamma está definida por
+\[
+\Gamma(x) = \int_0^\infty t^{x-1} e^{-t} \, dt, \quad x > 0.
+\]
+Escribe un programa para calcular el valor de esta función a partir de la definición usando cada uno de los siguientes enfoques:
+
+\begin{itemize}
+    \item[(a)] Trunca el intervalo infinito de integración y usa una regla de cuadratura compuesta, como la del trapecio o la de Simpson. Necesitarás hacer algo de experimentación o análisis para determinar dónde truncar el intervalo, basado en el compromiso habitual entre eficiencia y precisión.
+    
+    \item[(b)] Trunca el intervalo y usa una rutina de cuadratura adaptativa estándar. Nuevamente, explora el compromiso entre precisión y eficiencia.
+    
+    \item[(c)] La cuadratura de Gauss-Laguerre está diseñada para el intervalo \([0, \infty)\) y la función de peso \(e^{-x}\), por lo que es ideal para aproximar esta integral. Busca los nodos y los pesos para las reglas de cuadratura de Gauss-Laguerre de varios órdenes (ver [2, 447, 521], por ejemplo) y calcula las estimaciones resultantes para la integral.
+    
+    \item[(d)] Si está disponible, usa una rutina de cuadratura adaptativa diseñada para un intervalo no acotado de integración.
+\end{itemize}
+
+Para cada método, calcula el valor aproximado de la integral para varios valores de \(x\) en el rango de 1 a 10. Compara tus resultados con los valores dados por la función gamma incorporada o con los valores conocidos para argumentos enteros,
+\[
+\Gamma(n) = (n - 1)!.
+\]
+¿Cómo varían los métodos en eficiencia para un nivel de precisión dado?
+
+\textbf{8.11} La teoría de la radiación del cuerpo negro de Planck conduce a la integral
+\[
+\int_0^\infty \frac{x^3}{e^x - 1} \, dx.
+\]
+Evalúa esta integral usando cada uno de los métodos del ejercicio anterior, y compara su eficiencia y precisión.
+
+\textbf{8.12}
+\begin{itemize}
+    \item[(a)] Evalúa la integral
+    \[
+    \int_{-\infty}^\infty \exp(-x^2) \cos(x) \, dx
+    \]
+    truncando el intervalo de integración y usando una regla de cuadratura compuesta. Experimenta con los límites de integración y el tamaño del paso de la regla compuesta. Compara tus resultados con el valor exacto de la integral, que es \(\sqrt{\pi} \exp(-1/4)\).
+    
+    \item[(b)] Repite la parte (a), pero esta vez usa una rutina de cuadratura adaptativa.
+    \item[(c)] La cuadratura de Gauss-Hermite está diseñada para el intervalo \([-\infty, \infty]\) y la función de peso \(\exp(-x^2)\), por lo que es ideal para aproximar esta integral. Busca los nodos y los pesos para las reglas de cuadratura de Gauss-Hermite de varios órdenes (ver [2, 447, 521], por ejemplo) y calcula las estimaciones resultantes para la integral.
+\end{itemize}
+
+\textbf{8.13} En dos dimensiones, supón que hay una distribución de carga uniforme en la región \(-1 \leq x \leq 1\), \(-1 \leq y \leq 1\). Luego, con unidades adecuadamente elegidas, el potencial electrostático en un punto \((\hat{x}, \hat{y})\) fuera de la región está dado por la doble integral
+\[
+\Phi(\hat{x}, \hat{y}) = \int_{-1}^1 \int_{-1}^1 \frac{dx \, dy}{\sqrt{(\hat{x} - x)^2 + (\hat{y} - y)^2}}.
+\]
+Evalúa esta integral para suficientes puntos \((\hat{x}, \hat{y})\) para trazar la superficie \(\Phi(\hat{x}, \hat{y})\) sobre la región \(2 \leq \hat{x} \leq 10\), \(2 \leq \hat{y} \leq 10\).
+
+\textbf{8.14} Usando cualquier método que elijas, evalúa la doble integral
+\[
+\iint e^{-xy} \, dx \, dy
+\]
+sobre cada una de las siguientes regiones:
+\begin{itemize}
+    \item[(a)] El cuadrado unitario, es decir, \(0 \leq x \leq 1\), \(0 \leq y \leq 1\).
+    \item[(b)] El cuarto del disco unitario en el primer cuadrante, es decir, \(x^2 + y^2 \leq 1\), \(x \geq 0\), \(y \geq 0\).
+\end{itemize}
+
+\textbf{8.15}
+\begin{itemize}
+    \item[(a)] Escribe una rutina de cuadratura automática usando la regla de Simpson compuesta. Refina uniformemente de forma sucesiva hasta alcanzar una tolerancia de error dada. Estima el error en cada etapa comparando los valores obtenidos para tamaños de malla consecutivos. ¿Qué tipo de estructura de datos es necesaria para reutilizar los valores de la función previamente calculados?
+    
+    \item[(b)] Escribe una rutina de cuadratura adaptativa usando la regla de Simpson compuesta. Refina de forma sucesiva solo aquellos subintervalos que aún no han alcanzado una tolerancia de error. ¿Qué tipo de estructura de datos es necesaria para llevar un seguimiento de qué subintervalos han convergido?
+    
+    Después de la depuración, prueba tus rutinas usando algunas de las integrales en los problemas anteriores y compara los resultados con los obtenidos previamente. ¿Cómo varía la eficiencia de tu rutina adaptativa con respecto a la de tu rutina no adaptativa?
+\end{itemize}
+
+\textbf{8.16} Selecciona una rutina de cuadratura adaptativa e intente idear una función integrando para la cual dé una respuesta que sea completamente incorrecta. (Pista: este problema puede requerir al menos una ronda de prueba y error). ¿Puede idear una función suave para la cual la rutina adaptativa esté seriamente equivocada?
+
+\textbf{8.17}
+\begin{itemize}
+    \item[(a)] Resuelve la ecuación integral
+    \[
+    \int_0^1 (s^2 + t^2)^{1/2} u(t) \, dt = \frac{(s^2 + 1)^{3/2} - s^3}{3}
+    \]
+    en el intervalo \([0, 1]\) discretizando la integral usando la regla de cuadratura de Simpson compuesta con \(n\) puntos igualmente espaciados \(t_j\), y también usando los mismos \(n\) puntos para los \(s_i\). Resuelve el sistema lineal resultante \(A\mathbf{z} = \mathbf{y}\) usando una rutina de biblioteca para la eliminación gaussiana con pivoteo parcial. Experimenta con varios valores de \(n\) en el rango de 3 a 15, comparando tus resultados con la solución única conocida, \(u(t) = t\). ¿Qué valor de \(n\) da los mejores resultados? ¿Puedes explicar por qué?
+    
+    \item[(b)] Para cada valor de \(n\) en la parte (a), calcula el número de condición de la matriz \(A\). ¿Cómo se comporta en función de \(n\)?
+    
+    \item[(c)] Repite la parte (a), esta vez resolviendo el sistema lineal usando la descomposición en valores singulares, pero omitiendo cualquier valor singular "pequeño". Prueba varios umbrales para truncar los valores singulares, y nuevamente compara tus resultados con la solución verdadera conocida.
+    
+    \item[(d)] Repite la parte (a), esta vez usando el método de regularización. Experimenta con varios valores para el parámetro de regularización \(\mu\) para determinar qué valor da los mejores resultados para un valor dado de \(n\). Para cada valor de \(\mu\), traza un punto en un gráfico bidimensional cuyas ejes son la norma de la solución y la norma del residual. ¿Cuál es la forma de la curva trazada a medida que \(\mu\) varía? ¿Sugiere esta forma un valor óptimo para \(\mu\)?
+    
+    \item[(e)] Repite la parte (a), esta vez usando una rutina de optimización para minimizar \(\|\mathbf{y} - A\mathbf{z}\|_2^2\) sujeto a la restricción de que los componentes de la solución deben ser no negativos. Nuevamente, compara tus resultados con la solución verdadera conocida.
+    \item[(f)] Repite la parte (e), esta vez imponiendo la restricción adicional de que la solución debe ser monótonamente creciente, es decir, \(x_1 \geq 0\) y \(x_i - x_{i-1} \geq 0\), para \(i = 2, \dots, n\). ¿Cuánta diferencia hace esto en la aproximación de la solución verdadera?
+\end{itemize}
+
+\textbf{8.18} En este ejercicio experimentaremos con la diferenciación numérica utilizando datos del Problema de Computadora 3.1:
+\[
+\begin{array}{c|c}
+t & y \\
+\hline
+0.0 & 1.0 \\
+1.0 & 2.7 \\
+2.0 & 5.8 \\
+3.0 & 6.6 \\
+4.0 & 7.5 \\
+5.0 & 9.9
+\end{array}
+\]
+Para cada uno de los siguientes métodos para estimar la derivada, calcula la derivada de los datos originales y también experimenta con perturbaciones aleatorias de los valores de \(y\) para determinar la sensibilidad de las estimaciones de la derivada resultantes. Para cada método, comenta sobre la razonabilidad de las estimaciones de la derivada y su sensibilidad a las perturbaciones. Nota que los datos son monótonamente crecientes, por lo que se podría esperar que la derivada sea siempre positiva.
+\begin{itemize}
+    \item[(a)] Para \(n = 0, 1, \dots, 5\), ajusta un polinomio de grado \(n\) por mínimos cuadrados a los datos, luego diferencia el polinomio resultante y evalúa la derivada en cada uno de los valores de \(t\) dados.
+    
+    \item[(b)] Interpola los datos con una spline cúbica, diferencia el polinomio cúbico por partes resultante, y evalúa la derivada en cada uno de los valores de \(t\) dados (algunas rutinas de splines proporcionan la derivada automáticamente, pero se puede hacer manualmente si es necesario).
+    
+    \item[(c)] Repite la parte (b), esta vez utilizando una rutina de spline suavizante. Experimenta con varios niveles de suavizado, utilizando cualquier mecanismo para controlar el grado de suavizado que la rutina proporcione.
+    
+    \item[(d)] Interpola los datos con una cúbica de Hermite monotónica, diferencia el polinomio cúbico por partes resultante, y evalúa la derivada en cada uno de los valores de \(t\) dados.
+\end{itemize}
+
+\end{document}
