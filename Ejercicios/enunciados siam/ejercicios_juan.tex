@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   
+  basicstyle=\footnotesize,        
+  breaklines=true,                 
+  captionpos=b,                    
+  commentstyle=\color{mygreen},    
+  escapeinside={\%*}{*)},          
+  keywordstyle=\color{blue},       
+  stringstyle=\color{mymauve},     
+}
+
+\begin{document}
+\section*{Ejercicio 1: Aproximación y Análisis de Errores en \(\sin(\pi/8)\)}
+
+Utilizando las herramientas aprendidas en clases, realiza una aproximación de \(\sin(\pi/8)\) asumiendo que no tienes acceso a una calculadora o software avanzado. Usa una aproximación simple para \(\pi\) y realiza el análisis de errores utilizando la siguiente relación:
+
+\[
+\text{Error Total} = \hat{f}(\hat{x}) - f(x)
+\]
+
+Luego, emplea el truco matemático estándar de sumar y restar la misma cantidad para obtener:
+
+\[
+\text{Error Total} = (\hat{f}(\hat{x}) - f(\hat{x})) + (f(\hat{x}) - f(x))
+\]
+
+De esta manera, se puede definir:
+
+\[
+\text{Error Total} = \text{Error computacional} + \text{Error de datos propagados}
+\]
+
+Calcula y analiza estos errores para comprender cómo afectan la precisión de la aproximación.
+
+\section*{Ejercicio 2 : Derivadas Numéricas mediante Expansión en Serie de Taylor}
+
+Mediante la expansión en serie de Taylor, realiza las siguientes tareas:
+
+\begin{enumerate}
+    \item[a)] Demuestra la expresión para la \textbf{derivada centrada} de una función \(f(x)\) y analiza su error correspondiente.
+    \item[b)] Demuestra la expresión para la \textbf{derivada adelantada} de \(f(x)\) y analiza su error correspondiente.
+    \item[c)] Demuestra la expresión para la \textbf{derivada retrasada} de \(f(x)\) y analiza su error correspondiente.
+    \item[d)] Calcula el \textbf{valor óptimo de \(h\)} para minimizar el error en cada una de las derivadas anteriores y compara los resultados obtenidos.
+\end{enumerate}
+
+\section*{Ejercicio 3: Comparación de Métodos para Diferentes Funciones}
+
+\textbf{Objetivo:} Comparar la precisión de los métodos de derivación numérica para diferentes tipos de funciones.
+
+\begin{enumerate}
+    \item[a)] \textbf{Instrucciones:}
+    \begin{enumerate}
+        \item Implementa las siguientes funciones: \(f(x) = \sin(x)\), \(f(x) = e^x\), \(f(x) = \ln(x)\) (en \(x > 0\)), y \(f(x) = x^2\).
+        \item Calcula las derivadas numéricas usando los tres métodos para cada función.
+        \item Grafica todas las derivadas y compara con las derivadas exactas de cada función.
+    \end{enumerate}
+    
+    \item[b)] \textbf{Preguntas:}
+    \begin{enumerate}
+        \item ¿Qué función resulta más difícil de derivar numéricamente?
+        \item ¿Qué observaciones puedes hacer acerca de la precisión de cada método en función del tipo de función?
+    \end{enumerate}
+\end{enumerate}
+
+
+\end{document}

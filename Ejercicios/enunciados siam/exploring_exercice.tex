@@ -25,7 +25,7 @@
 
 \begin{document}
 
-\textbf{1 (Problema de apilamiento de libros)} Aquí hay una situación física interesante en la que aparece la Serie Armónica. El problema fue publicado por Paul Johnson en 1955 \cite{101}. El código \texttt{harmonic.ipynb} puede ser útil en esta pregunta.
+\textbf{1 (Problema de apilamiento de libros)} Aquí hay una situación física interesante en la que aparece la Serie Armónica. El problema fue publicado por Paul Johnson en 1955. El código \texttt{harmonic.ipynb} puede ser útil en esta pregunta.
 
 Deseo crear una torre inclinada de libros utilizando múltiples copias idénticas de un libro. Usando \(n\) libros organizados en una torre perpendicular al borde de la mesa, empujo el libro superior tan lejos como puedo, y hago lo mismo con el siguiente libro abajo, trabajando hacia la base de la torre. Ver la figura abajo cuando \(n = 4\). Podemos asumir que los libros y la mesa son lo suficientemente rígidos como para que no haya movimientos verticales.
 
@@ -84,7 +84,7 @@ Sea \(n\) el número de iteraciones en cada esquema de aproximación. Por ejempl
     \]
     para las tres aproximaciones hasta \(n = 100\). Esto nos da una idea de qué tan rápido las aproximaciones convergen a \(\pi\).
     
-    Deberías encontrar que el error para la fórmula de Viète no parece disminuir por debajo de un límite mínimo de alrededor de \(10^{-16}\). La razón de esto es el \textit{epsilon de máquina}, que será discutido en la sección \(\S 2.2\).
+    Deberías encontrar que el error para la fórmula de Viète no parece disminuir por debajo de un límite mínimo de alrededor de \(10^{-16}\). 
     
     \item[(c)] Recuerda que una estimación \(x\) de \(\pi\) es precisa hasta \(p\) lugares decimales si \(\left| x - \pi \right| < 0.5 \times 10^{-p}\). Para cada una de las tres aproximaciones de \(\pi\), calcula cuántas iteraciones se necesitan para obtener \(\pi\) preciso hasta 5 lugares decimales. (Respuestas: 200000, 157080 y 9.)
 \end{itemize}
@@ -259,7 +259,7 @@ En el mismo conjunto de ejes, grafica su primera y segunda derivada, estimadas u
 \end{figure}
 
 
-\textbf{13 (Teorema del Valor Medio)} Considera la función \textit{sinc} \(f\) definida en la pregunta anterior. Apliquemos el Teorema del Valor Medio (teorema 1.11) a \(f\) en el intervalo \([0, \pi]\). En particular, determinemos el(los) valor(es) de \(c\) en la declaración del teorema. En otras palabras, deseamos encontrar \(c \in [0, \pi]\) tal que
+\textbf{13 (Teorema del Valor Medio)} Considera la función \textit{sinc} \(f\) definida en la pregunta anterior. Apliquemos el Teorema del Valor Medio a \(f\) en el intervalo \([0, \pi]\). En particular, determinemos el(los) valor(es) de \(c\) en la declaración del teorema. En otras palabras, deseamos encontrar \(c \in [0, \pi]\) tal que
 
 \[
 f'(c) = \frac{f(\pi) - f(0)}{\pi}.
@@ -269,7 +269,7 @@ f'(c) = \frac{f(\pi) - f(0)}{\pi}.
     \item[(a)] Demuestra (a mano) que una solución es \(c = \pi\).
     
     \item[(b)] Usa un algoritmo de búsqueda de raíces para encontrar otra solución con 4 decimales.  
-    Tu respuesta debe ser consistente con la línea discontinua en la fig. 1.16 anterior.
+    Tu respuesta debe ser consistente con la línea discontinua en la fig. 1 anterior.
 \end{itemize}
 
 \textbf{14 (Otro contraejemplo)} Aquí hay otro ejemplo interesante e intuitivo en el análisis. Usa \texttt{counterexample.ipynb} como plantilla.
