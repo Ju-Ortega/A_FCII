@@ -1,8 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.arange(0,100,2)
+x = np.linspace(0,np.pi*2,100)
 def f(x):
 	return np.sin(x)
 
 plt.plot(x,f(x))
+
+
+# Este es un codigo de ejemplo
