@@ -4,6 +4,7 @@ Este repositorio contiene material de apoyo para las ayudantías del curso FCII 
 
 * [Práctica I: Análisis y resolución de problemas](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_1_23_08_24.ipynb)
 * [Práctica III: Ejercicios avanzados y discusión](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_3_06_09_24.ipynb)
+* [Práctica IV: Euler y RK](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_5_11_10_24.ipynb)
 
 Cada notebook incluye una serie de problemas y ejercicios que han sido diseñados para reforzar los conceptos discutidos en las clases. ¡Esperamos que te sean de gran ayuda en tu estudio!
 
