@@ -10,6 +10,7 @@ Este repositorio contiene material de apoyo para las ayudantías del curso FCII 
 * [Práctica VI: Euler y RK](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_6_11_10_24.ipynb)
 * [Práctica VII: Atractor de Lorenz y Tres Cuerpos](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_7_18_10_24.ipynb)
 * [Práctica VIII: Leapfrog method](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_8_25_10_24.ipynb)
+* [Práctica X](https://githubtocolab.com/Ju-Ortega/A_FCII/blob/main/ayudantia_10_15_11_24.ipynb)
 
 Cada notebook incluye una serie de problemas y ejercicios que han sido diseñados para reforzar los conceptos discutidos en las clases. ¡Esperamos que te sean de gran ayuda en tu estudio!
 
